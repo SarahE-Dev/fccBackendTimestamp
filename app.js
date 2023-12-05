@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors({ optionsSuccessStatus: 200 }));
 
 app.get('/', (req, res)=>{
-    res.sendFile(__dirname+'index.html')
+    res.sendFile(__dirname + 'index.html')
 })
 
 app.get('/api/:date?', (req, res)=>{
@@ -28,7 +28,7 @@ app.get('/api/:date?', (req, res)=>{
     }
 
     if(date === 'Invalid Date'){
-        res.json({error: date})
+        res.json({error: 'Invalid Date'})
     }else{
         const unix = date.getTime();
         const utc = date.toUTCString();

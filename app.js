@@ -6,7 +6,11 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ optionsSuccessStatus: 200 }));
+
+app.get('/', (req, res)=>{
+    res.sendFile(__dirname + 'index.html')
+})
 
 app.get('/api/timestamp/:date?', (req, res)=>{
     const dateGiven = req.params.date;

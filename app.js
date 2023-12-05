@@ -13,28 +13,35 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/api/:date?', (req, res)=>{
-    const dateGiven = req.params.date;
-    dateGiven = decodeURI(dateGiven)
-    let date;
+    
+        const dateGiven = req.params.date;
+        let date;
 
-    if(!dateGiven){
-        date = new Date()
-    }else{
-        const unixCheck = dateGiven * 1;
-        if(isNaN(unixCheck)){
-            date = new Date(dateGiven)
+        if(!dateGiven){
+            date = new Date()
         }else{
-            date = new Date(unixCheck)
+            const unixCheck = dateGiven * 1;
+            if(isNaN(unixCheck)){
+                date = new Date(dateGiven)
+            }else{
+                date = new Date(unixCheck)
+            }
         }
-    }
 
-    if(date === 'Invalid Date'){
-        res.json({error: 'Invalid Date'})
-    }else{
         const unix = date.getTime();
         const utc = date.toUTCString();
         res.json({unix, utc})
-    }
+
+        if(date === 'Invalid Date'){
+            res.json({'error': 'Invalid Date'})
+        }
+    
+    
+
+    
+    
+        
+    
 })
 
 

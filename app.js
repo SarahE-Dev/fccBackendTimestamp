@@ -13,11 +13,10 @@ app.get('/', (req, res)=>{
     res.sendFile(path.join(__dirname, 'index'))
 })
 
-app.get('/api/:date?', (req, res)=>{
+function getTimestamp(req, res){
     
-        const dateGiven = req.params.date;
+        const dateGiven = req.params.date
         let date;
-
         if(!dateGiven){
             date = new Date()
         }else{
@@ -28,22 +27,21 @@ app.get('/api/:date?', (req, res)=>{
                 date = new Date(unixCheck)
             }
         }
+        if(date == 'Invalid Date'){
+            res.json({error: 'Invalid Date'})
+        }else{
+            const unix = date.getTime();
+            const utc = date.toUTCString();
 
-        const unix = date.getTime();
-        const utc = date.toUTCString();
-        res.json({unix, utc})
-
-        if(date === 'Invalid Date'){
-            res.json({'error': 'Invalid Date'})
-        }
-    
-    
-
-    
-    
         
-    
-})
+            res.json({unix, utc})
+        }
+        
+            
+   
+}
+
+app.get('/api/:date?', getTimestamp)
 
 
 

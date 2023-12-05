@@ -12,7 +12,7 @@ app.get('/', (req, res)=>{
     res.sendFile('index.html')
 })
 
-app.get('/api/timestamp/:date?', (req, res)=>{
+app.get('/api/:date?', (req, res)=>{
     const dateGiven = req.params.date;
     let date;
 

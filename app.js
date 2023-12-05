@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors({ optionsSuccessStatus: 200 }));
 
 app.get('/', (req, res)=>{
-    res.sendFile('index')
+    res.sendFile('index.html')
 })
 
 function getTimestamp(req, res){

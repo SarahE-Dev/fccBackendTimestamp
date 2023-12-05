@@ -14,6 +14,7 @@ app.get('/', (req, res)=>{
 
 app.get('/api/:date?', (req, res)=>{
     const dateGiven = req.params.date;
+    dateGiven = decodeURI(dateGiven)
     let date;
 
     if(!dateGiven){

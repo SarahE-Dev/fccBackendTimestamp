@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
+const path = require('path')
 
 
 const app = express();
@@ -10,7 +11,7 @@ app.use(express.json());
 app.use(cors({ optionsSuccessStatus: 200 }));
 
 app.get('/', (req, res)=>{
-    res.sendFile(__dirname + 'index.html')
+    res.sendFile(path.join(__dirname, 'index.html'))
 })
 
 function getTimestamp(req, res){
